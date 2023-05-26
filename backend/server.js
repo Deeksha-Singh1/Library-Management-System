@@ -1,10 +1,13 @@
 const express = require('express');
-
+const mongoose = require('mongoose');
 const app = express();
+const dbConnect =  require('./config/dbConnect')
 
-//routes
-//User routes 
 
+//DB connect
+dbConnect();
+
+/*User routes */
 //Registration 
 app.post('/api/users/register' , (req,res) =>{
   res.send('Register route');
@@ -31,7 +34,7 @@ app.get('/api/users',(req,res)=>{
 })
 
 //Server
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 7000
 app.listen(PORT, ()=>{
   console.log(`Server is up and running on ${PORT}`);
 })
