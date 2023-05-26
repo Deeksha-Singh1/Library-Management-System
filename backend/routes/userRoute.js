@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../modules/User');
 const usersRoute = express.Router();
 const asyncHandler = require('express-async-handler');
+const generateToken = require('../utils/generateToken');
 
 
 //Registration 
@@ -13,7 +14,13 @@ usersRoute.post('/register', asyncHandler(async (req,res)=>{
   }
   const userCreated = await User.create({ email,name,password});
 
-  res.send(userCreated);
+   res.json({
+      _id: userCreated._id,
+      name: userCreated.name,
+      password: userCreated.password,
+      email: userCreated.email,
+      token: generateToken(userCreated._id)
+    });
   }) 
 );
 
@@ -22,14 +29,15 @@ usersRoute.post('/login',asyncHandler(async (req,res)=>{
   /*fetch credentials from request body*/
   const {email, password} = req.body;
    const user = await User.findOne({email});
-   if(user && await user.isPasswordMatch(password)){
+   if(user && (await user.isPasswordMatch(password))){
     //set status code
     res.status(200);
     res.json({
       _id: user._id,
       name: user.name,
       password: user.password,
-      email: user.email
+      email: user.email,
+      token: generateToken(user._id)
     });
   }
   else{

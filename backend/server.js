@@ -1,14 +1,13 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
-const dbConnect =  require('./config/dbConnect');
-const User = require('./modules/User');
+
 const usersRoute = require('./routes/userRoute');
 const error = require('./middlewares/errorMiddlewareHandler');
+const dotenv = require('dotenv');
 
 
-//DB connect
-dbConnect();
+dotenv.config();
+require('./config/dbConnect')();
 
 //Passing body data of json type
 app.use(express.json());
