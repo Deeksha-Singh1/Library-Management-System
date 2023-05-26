@@ -1,37 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const dbConnect =  require('./config/dbConnect')
+const dbConnect =  require('./config/dbConnect');
+const User = require('./modules/User');
+const usersRoute = require('./routes/userRoute');
 
 
 //DB connect
 dbConnect();
 
-/*User routes */
-//Registration 
-app.post('/api/users/register' , (req,res) =>{
-  res.send('Register route');
-});
+//Passing body data of json type
+app.use(express.json());
 
-//login 
-app.post('/api/users/login', (req,res) =>{
-  res.send('Login route');
-});
-
-//update user
-app.put('/api/users/update',(req,res) =>{
-  res.send('Update route');
-});
-
-//Delete user
-app.delete('/api/users/:id',(req,res) =>{
-  res.send('Delete route');
-});
-
-//fetch users
-app.get('/api/users',(req,res)=>{
-  res.send('Fetch Users');
-})
+//Routes
+app.use('/api/users',usersRoute);
 
 //Server
 const PORT = process.env.PORT || 7000
