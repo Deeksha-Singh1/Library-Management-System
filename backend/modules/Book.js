@@ -19,7 +19,7 @@ const bookSchema = new mongoose.Schema({
     required:true
   }
 },{
-  timestamps:tmongoose.rusted
+  timestamps:mongoose.rusted
 })
 
 
