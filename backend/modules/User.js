@@ -19,11 +19,17 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
+//encrypting the password of the current user
 UserSchema.pre('save', async function(next){
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password,salt);
   next();
 })
+
+//verifying password
+UserSchema.methods.isPasswordMatch = async function (enterPassword){
+  return await bcrypt.compare(enterPassword, this.password)
+}
 
 const User = mongoose.model('User', UserSchema);
 

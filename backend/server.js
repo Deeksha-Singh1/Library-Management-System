@@ -4,6 +4,7 @@ const app = express();
 const dbConnect =  require('./config/dbConnect');
 const User = require('./modules/User');
 const usersRoute = require('./routes/userRoute');
+const error = require('./middlewares/errorMiddlewareHandler');
 
 
 //DB connect
@@ -14,6 +15,9 @@ app.use(express.json());
 
 //Routes
 app.use('/api/users',usersRoute);
+
+//Error middleware 
+app.use(error.errorMiddlewareHandler);
 
 //Server
 const PORT = process.env.PORT || 7000
