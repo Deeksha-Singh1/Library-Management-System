@@ -3,6 +3,8 @@ const User = require('../modules/User');
 const usersRoute = express.Router();
 const asyncHandler = require('express-async-handler');
 const generateToken = require('../utils/generateToken');
+const authMiddleware = require('../middlewares/authMiddleware');
+
 
 
 //Registration 
@@ -47,19 +49,51 @@ usersRoute.post('/login',asyncHandler(async (req,res)=>{
 }));
 
 //update user
-usersRoute.put('/update',(req,res) =>{
-  res.send('Update route');
-});
+usersRoute.put('/update',authMiddleware,
+asyncHandler(async (req, res) => {
+  //Find the login user by ID
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    if (req.body.password) {
+      user.password = req.body.password || user.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      token: generateToken(updatedUser._id),
+    });
+  }
+})
+);
 
 //Delete user
-usersRoute.delete('/:id',(req,res) =>{
+usersRoute.delete('/:id', (req, res) => {
   res.send('Delete route');
 });
 
-//fetch users
-usersRoute.get('/',(req,res)=>{
-  res.send('Fetch Users');
-})
+//fetch Users
+usersRoute.get(
+  '/',
+  authMiddleware,
+  asyncHandler(async (req, res) => {
+    const users = await User.find({});
+
+    if (users) {
+      res.status(200).json(users);
+    } else {
+      res.status(500);
+
+      throw new Error('No users found at the moment');
+    }
+  })
+);
 
 
 
