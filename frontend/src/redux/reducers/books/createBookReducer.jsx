@@ -12,7 +12,7 @@ const createBookReducer = (state={}, action) => {
       };
     case CREATE_BOOK_FAIL:
       return {
-        loaing : false,
+        loading : false,
         error:action.payload
       };
     default: 

@@ -4,6 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import { createBookReducer } from '../reducers/books/createBookReducer';
 
 const middleWares = [thunk];
+
 const reducer  = combineReducers({
   bookCreated: createBookReducer,
 });
