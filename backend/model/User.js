@@ -19,6 +19,15 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
+//Populating books the user created
+UserSchema.virtual('books', {
+  ref:'Book',
+  foreignField: 'createdBy',
+  localField: '_id'
+});
+
+UserSchema.set('toJSON', {virtuals:true})
+
 //encrypting the password of the current user
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {

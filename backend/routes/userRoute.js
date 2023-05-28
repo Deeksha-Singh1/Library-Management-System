@@ -95,7 +95,18 @@ usersRoute.get(
   })
 );
 
-
+//Profile route
+usersRoute.get('/profile',authMiddleware,asyncHandler(async (req,res)=>{
+  try{
+    const user = await User.findById(req.user._id).populate('books');
+    if(!user) throw new Error("You don't have a any profile")
+    res.status(200)
+    res.send(user)
+  }catch(error){
+      res.status(500);
+      throw new Error('Server')
+  }
+}))
 
 
  module.exports =usersRoute;

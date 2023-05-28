@@ -6,8 +6,13 @@ const Book = require('../model/Book');
 const bookRouter = express.Router();
 
 //create book
-bookRouter.post('/', expressAsyncHandler( async (req,res)=>{
-  const book = await Book.create(req.body);
+bookRouter.post('/', authMiddleware,expressAsyncHandler( async (req,res)=>{
+
+  const userId = req.user._id
+
+  const book = await Book.create({
+    
+  });
   if(book){
 
     res.status(200);

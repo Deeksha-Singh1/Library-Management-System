@@ -19,9 +19,9 @@ const Navbar = props => {
   return (
     <header>
          <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-        <a className='navbar-brand' to='/'>
-          BK
-        </a>
+        <Link className='navbar-brand' to='/'>
+          Library
+        </Link>
         <button
           className='navbar-toggler'
           type='button'
@@ -36,9 +36,9 @@ const Navbar = props => {
         <div className='collapse navbar-collapse' id='navbarColor01'>
           <ul className='navbar-nav m-auto'>
             <li className='nav-item active'>
-              <a className='nav-link' to='/'>
+              <Link className='nav-link' to='/'>
                 Home <span className='sr-only'>(current)</span>
-              </a>
+              </Link>
             </li>
             {!userInfo ? (
               <>
@@ -71,7 +71,8 @@ const Navbar = props => {
                     Users
                   </Link>
                 </li>
-                <li className='nav-item'>
+              
+               <li className='nav-item'>
                   <Link
                     onClick={logoutHandler}
                     className='nav-link'
@@ -79,9 +80,29 @@ const Navbar = props => {
                     Logout
                   </Link>
                 </li>
+
+                <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle btn-dark" data-toggle="dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false"></a>
+          <div className="dropdown-menu">
+            <Link className="dropdown-item" to="/profile">Profile</Link>
+            <Link className="dropdown-item" to="/addbook">Add book</Link>
+            <Link className="dropdown-item" to="/books">Books</Link>
+            <div className="dropdown-divider"></div>
+          </div>
+        </li>
+
+        <form className="d-flex">
+        <input className="form-control me-sm-2" type="search" placeholder="Search"/>
+        <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+                
               </>
+              
             )}
           </ul>
+          
+
+      
         </div>
       </nav>
     </header>

@@ -1,7 +1,6 @@
-
+import React from 'react';
 import './Profile.css';
 import pic from '../../assets/img/bookpic.jpg';
-
 import { Link } from 'react-router-dom';
 
 const Profile = ({ history }) => {
@@ -33,14 +32,7 @@ const Profile = ({ history }) => {
             <th scope='col'>Update</th>
           </tr>
         </thead>
-        <tbody>
-          <tr className='table-dark'>
-            <th scope='row'>author</th>
-            <td>Title</td>
-            <td>Delete</td>
-            <td>Update</td>
-          </tr>
-        </tbody>
+      
       </table>
     </>
   );
