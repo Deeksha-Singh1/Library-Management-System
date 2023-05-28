@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../modules/User');
+const User = require('../model/User');
 const usersRoute = express.Router();
 const asyncHandler = require('express-async-handler');
 const generateToken = require('../utils/generateToken');

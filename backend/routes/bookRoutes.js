@@ -1,6 +1,7 @@
 const express = require('express');
 const expressAsyncHandler = require('express-async-handler');
-const Book = require('../modules/Book');
+const authMiddleware = require('../middlewares/authMiddleware');
+const Book = require('../model/Book');
 
 const bookRouter = express.Router();
 
@@ -21,7 +22,7 @@ bookRouter.post('/', expressAsyncHandler( async (req,res)=>{
 
 //Find the book
 bookRouter.get('/', expressAsyncHandler( async (req,res)=>{
-  const book = await Book.find(req.body);
+  const book = await Book.find({});
   if(book){
 
     res.status(200);
@@ -29,13 +30,13 @@ bookRouter.get('/', expressAsyncHandler( async (req,res)=>{
   }
   else{
     res.status(500);
-    throw new Error('There is no book');
+    throw new Error('There are no books');
   }
 })
 );
 
 //Update the book
-bookRouter.put('/:id',expressAsyncHandler( async ( req, res)=>{
+bookRouter.put('/:id',authMiddleware,expressAsyncHandler( async ( req, res)=>{
   const book = await Book.findById(req.params.id);
 
   if(book){

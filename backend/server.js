@@ -1,16 +1,15 @@
 const express = require('express');
-const app = express();
-
-const usersRoute = require('./routes/userRoute');
-const error = require('./middlewares/errorMiddlewareHandler');
 const dotenv = require('dotenv');
+const error = require('./middlewares/errorMiddlewareHandler');
+const usersRoute = require('./routes/userRoute');
 const bookRouter = require('./routes/bookRoutes');
-
-
-
 
 dotenv.config();
 require('./config/dbConnect')();
+
+
+const app = express();
+
 
 //Passing body data of json type
 app.use(express.json());
