@@ -10,6 +10,9 @@ import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
   USER_PROFILE_FAIL,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_FAIL,
+  USER_UPDATE_SUCCESS,
 } from '../actionTypes';
 
 const registerUserAction = (name, email, password) => {
@@ -127,4 +130,35 @@ const getUserProfileAction = () =>{
   }
 }
 
-export { registerUserAction, loginUserAction, logoutUserAction ,getUserProfileAction};
+//User update
+const updateUser =  (name,email,password)=>{
+  return async (dispatch, getState) => {
+    try{
+      dispatch({
+        type: USER_UPDATE_REQUEST,
+      });
+
+      const {userInfo}=getState().userLogin;
+      const config = {
+        headers:{
+          'Content-Type':'application/json',
+          authorization:`Bearer ${userInfo.token}`
+        }
+      };
+
+      const {data} = await axios.put('/api/users/profile/update',{
+        email,password,name
+      });
+      dispatch({
+        type:USER_UPDATE_SUCCESS,
+        payload:data
+      })
+
+    }catch(error){ dispatch({
+        type: USER_UPDATE_FAIL,
+        payload: error.response && error.response.data.message ? error.response.data.message : error.message
+      })}
+  }
+}
+
+export { registerUserAction, loginUserAction, logoutUserAction ,getUserProfileAction,updateUser};
