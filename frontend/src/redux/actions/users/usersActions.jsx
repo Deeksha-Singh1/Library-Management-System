@@ -7,6 +7,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT_SUCCESS,
+  USER_PROFILE_REQUEST,
+  USER_PROFILE_SUCCESS,
+  USER_PROFILE_FAIL,
 } from '../actionTypes';
 
 const registerUserAction = (name, email, password) => {
@@ -96,4 +99,32 @@ const logoutUserAction = () => async dispatch => {
   } catch (error) {}
 };
 
-export { registerUserAction, loginUserAction, logoutUserAction };
+//Profile action
+const getUserProfileAction = () =>{
+  return async (dispatch, getState)=>{
+    //grab the user token
+    const {userInfo} = getState().userLogin;
+    try{
+      dispatch({
+        type:USER_PROFILE_REQUEST
+      });
+      const config={
+        headers: {
+          authorization:`Bearer ${userInfo.token}`
+        }
+      }
+      const {data} = await axios.get('/api/users/profile',config);
+      dispatch({
+        type:USER_PROFILE_SUCCESS,
+        payload: data
+      })
+    }catch(error){
+      dispatch({
+        type: USER_PROFILE_FAIL,
+        payload: error.response && error.response.data.message
+      })
+    }
+  }
+}
+
+export { registerUserAction, loginUserAction, logoutUserAction ,getUserProfileAction};

@@ -12,7 +12,7 @@ const Books = () => {
 
   //GRAB THE DATA FROM OUR STORE
   const { books, loading } = useSelector(state => {
-    return state.booksList;
+    return state.bookList;
   });
   
   console.log(books);
@@ -33,7 +33,7 @@ const Books = () => {
             </thead>
             <tbody>
               {loading ? (
-                <Loading />
+                 <h3>Loading</h3>
               ) : (
                 <>
                   {books &&
