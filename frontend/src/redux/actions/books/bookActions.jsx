@@ -15,6 +15,8 @@ const createBookAction =bookData => {
       };
   
       const {data} = await axios.post('/api/books', bookData,config);
+
+      console.log(data)
   
       dispatch({
         type: CREATE_BOOK_SUCCESS,

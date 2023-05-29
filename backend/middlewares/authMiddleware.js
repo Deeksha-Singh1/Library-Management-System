@@ -1,8 +1,8 @@
-const asynHandler = require('express-async-handler');
+const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 
-const authMiddleware = asynHandler(async (req, res, next) => {
+const authMiddleware = asyncHandler(async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
@@ -16,7 +16,7 @@ const authMiddleware = asynHandler(async (req, res, next) => {
       next();
     } catch (error) {
       res.status(401);
-      throw new Error('Not authorised, invalid token');
+      throw new Error('Not authorized, invalid token');
     }
   }
 });

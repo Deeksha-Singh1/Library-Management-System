@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooksAction } from '../../redux/actions/books/bookActions';
-import Loading from '../Loading/Loading';
 const Books = () => {
   const dispatch = useDispatch();
 
@@ -11,7 +10,7 @@ const Books = () => {
   }, [dispatch]);
 
   //GRAB THE DATA FROM OUR STORE
-  const { books, loading } = useSelector(state => {
+  const { books } = useSelector(state => {
     return state.bookList;
   });
   

@@ -15,7 +15,7 @@ const Navbar = props => {
     history.push('/');
   };
 
-  const { userInfo, loading, error } = state;
+  const { userInfo } = state;
   return (
     <header>
          <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
@@ -68,7 +68,7 @@ const Navbar = props => {
 
                 <li className='nav-item'>
                   <Link className='nav-link' to='/profile'>
-                    Profile
+                    {state.userInfo.name}
                   </Link>
                 </li>
               

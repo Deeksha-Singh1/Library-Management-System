@@ -11,17 +11,18 @@ const AddBook = () => {
   const dispatch = useDispatch();
 
   //Handle form submit
-
   const handleFormSubmit = e => {
     e.preventDefault();
-
+  
     const data = {
       title,
       author,
       category,
     };
-    dispatch(createBookAction(data));
+    dispatch(createBookAction(data)); 
   };
+
+  
   return (
     <div className='row container-height'>
       <div className='col-lg-6 col-md-6 m-auto'>
@@ -61,7 +62,9 @@ const AddBook = () => {
                       <div className='form-group'>
                         <select
                           value={category}
-                          onChange={e => setCategory(e.target.value)}
+                          onChange={e => {setCategory(e.target.value)
+                         }
+                          }
                           className='custom-select'>
                           <option defaultValue='category'>
                             -Select Category-

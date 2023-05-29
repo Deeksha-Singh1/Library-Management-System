@@ -8,14 +8,15 @@ const bookRouter = express.Router();
 //create book
 bookRouter.post('/', authMiddleware,expressAsyncHandler( async (req,res)=>{
 //grab the user from the req.user
-  const userId = req.user._id
+  
 
   const book = await Book.create({
     title: req.body.title,
     category: req.body.category,
-    createdBy : userId,
+    createdBy : req.user._id,
     author: req.body.author
   });
+
   if(book){
 
     res.status(200);

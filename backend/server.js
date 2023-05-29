@@ -26,7 +26,7 @@ app.use('/api/books',bookRouter);
 app.use(error.errorMiddlewareHandler);
 
 //Server
-const PORT = process.env.PORT || 7000
+const PORT = 7000
 app.listen(PORT, ()=>{
   console.log(`Server is up and running on ${PORT}`);
 })

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUserAction } from '../../redux/actions/users/usersActions';
 import { Navigate } from 'react-router-dom';
@@ -14,13 +14,6 @@ const RegisterUser = ({ history }) => {
   const userLogin = useSelector(state => state.userLogin);
 
   const { userInfo } = userLogin;
-  //Redirect if user is login/authenticated
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     history.push('/dashboard');
-  //   }
-  // }, [userInfo,history]);
 
   if(userInfo){
     return <Navigate replace to='/'/>
@@ -29,7 +22,7 @@ const RegisterUser = ({ history }) => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    //disptach action here
+    //dispatch action here
     dispatch(registerUserAction(name, email, password));
   };
   return (
