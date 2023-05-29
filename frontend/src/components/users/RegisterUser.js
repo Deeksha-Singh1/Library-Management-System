@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUserAction } from '../../redux/actions/users/usersActions';
+import { Navigate } from 'react-router-dom';
 
 const RegisterUser = ({ history }) => {
   const [name, setName] = useState('');
@@ -15,11 +16,16 @@ const RegisterUser = ({ history }) => {
   const { userInfo } = userLogin;
   //Redirect if user is login/authenticated
 
-  useEffect(() => {
-    if (userInfo) {
-      history.push('/dashboard');
-    }
-  }, [userInfo,history]);
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     history.push('/dashboard');
+  //   }
+  // }, [userInfo,history]);
+
+  if(userInfo){
+    return <Navigate replace to='/'/>
+  }
+
 
   const formSubmitHandler = e => {
     e.preventDefault();

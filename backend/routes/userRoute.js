@@ -96,10 +96,10 @@ usersRoute.get(
 );
 
 //Profile route
-usersRoute.get('/profile/update',authMiddleware,asyncHandler(async (req,res)=>{
+usersRoute.get('/profile',authMiddleware,asyncHandler(async (req,res)=>{
   try{
     const user = await User.findById(req.user._id).populate('books');
-    if(!user) throw new Error("You don't have a any profile")
+    if(!user) throw new Error("You don't have any profile")
     res.status(200)
     res.send(user)
   }catch(error){

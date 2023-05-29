@@ -7,7 +7,7 @@ import RegisterUser from './components/users/RegisterUser';
 import LoginUser from './components/users/LoginUser';
 import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
-import UpdateProfile from './components/Profile/UpdateProfile';
+
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route exact path='/' element={<Home/>} />
           <Route exact path='/login' element={<LoginUser/>} />
           <Route exact path='/profile' element={<Profile/>} />
-          <Route exact path='/user-update' element={<UpdateProfile/>}/>
+          
           <Route exact path='/books' element={<Books/>} />
   <Route exact path='/addbook' element={<AddBook/>} />
            <Route exact path='/register' element={<RegisterUser/>} />

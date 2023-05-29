@@ -6,6 +6,7 @@ import { bookListReducer } from '../reducers/books/bookListReducer';
 import { userReducer } from '../reducers/users/userAuthReducer';
 import { userProfileReducer } from '../reducers/users/userProfileReducer';
 
+
 const middleWares = [thunk];
 
 const reducer  = combineReducers({
@@ -16,7 +17,7 @@ const reducer  = combineReducers({
 });
 
 
-//Get user from localstorage and save it into our store
+//Get user from local storage and save it into our store
 
 const userAuthFromStorage = localStorage.getItem('userAuthData')
   ? JSON.parse(localStorage.getItem('userAuthData'))

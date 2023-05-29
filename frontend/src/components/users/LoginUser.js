@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUserAction } from '../../redux/actions/users/usersActions';
 import ErrorMessage from '../ErrorMessage';
+import { Navigate } from 'react-router-dom';
 
 const LoginUser = ({ history }) => {
   const [email, setEmail] = useState('');
@@ -25,9 +26,14 @@ const LoginUser = ({ history }) => {
   };
 
   //Redirect
-  useEffect(() => {
-    if (userInfo) history.push('/profile');
-  }, [history, state, userInfo]);
+  // useEffect(() => {
+  //   if (userInfo) history.push('/profile');
+  // }, [history, state, userInfo]);
+
+  if(userInfo){
+    return <Navigate replace to='/'/>
+  }
+
 
   return (
     <div className='row container-height'>

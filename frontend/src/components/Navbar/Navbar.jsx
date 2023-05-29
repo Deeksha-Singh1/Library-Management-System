@@ -67,8 +67,8 @@ const Navbar = props => {
                 </li>
 
                 <li className='nav-item'>
-                  <Link className='nav-link' to='/users'>
-                    Users
+                  <Link className='nav-link' to='/profile'>
+                    Profile
                   </Link>
                 </li>
               
@@ -80,16 +80,6 @@ const Navbar = props => {
                     Logout
                   </Link>
                 </li>
-
-                <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle btn-dark" data-toggle="dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false"></a>
-          <div className="dropdown-menu">
-            <Link className="dropdown-item" to="/profile">Profile</Link>
-            <Link className="dropdown-item" to="/addbook">Add book</Link>
-            <Link className="dropdown-item" to="/books">Books</Link>
-            <div className="dropdown-divider"></div>
-          </div>
-        </li>
 
         <form className="d-flex">
         <input className="form-control me-sm-2" type="search" placeholder="Search"/>

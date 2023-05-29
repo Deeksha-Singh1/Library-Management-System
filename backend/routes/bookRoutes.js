@@ -7,7 +7,7 @@ const bookRouter = express.Router();
 
 //create book
 bookRouter.post('/', authMiddleware,expressAsyncHandler( async (req,res)=>{
-
+//grab the user from the req.user
   const userId = req.user._id
 
   const book = await Book.create({

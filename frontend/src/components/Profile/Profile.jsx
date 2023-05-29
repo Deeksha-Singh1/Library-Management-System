@@ -2,7 +2,6 @@ import React,{useEffect} from 'react';
 import './Profile.css';
 import { useDispatch, useSelector } from 'react-redux';
 import pic from '../../assets/img/bookpic.jpg';
-import { Link } from 'react-router-dom';
 import { getUserProfileAction } from '../../redux/actions/users/usersActions';
 
 
@@ -29,9 +28,7 @@ const Profile = () => {
               <div className='card-body'>
                 <h5 className='card-title'>{user?.email}</h5>
                 <p className='card-text'>{user?.name}</p>
-                <Link to='/user-update' className='btn btn-primary'>
-                  Update your profile
-                </Link>
+              
               </div>
             </div>
           </div>
@@ -40,10 +37,10 @@ const Profile = () => {
      
       {/* Table */}
       {loading ? <h1>Loading please wait</h1> :
-      <table className='table table-hover'>
+      <table className='table table-hover' >
       <thead>
-        <tr>
-          <th scope='col'>Author</th>
+        <tr  key={user?._id}>
+          <th scope='col' >Author</th>
           <th scope='col'>Book Name</th>
           <th scope='col'>Delete</th>
           <th scope='col'>Update</th>
@@ -52,7 +49,7 @@ const Profile = () => {
       <tbody>
        {user?.books.map(book=>(
          
-         <tr className='table-dark'>
+         <tr className='table-dark'  key={user?._id}>
            <th scope='row'>{book.author}</th>
            <td>{book.title}</td>
            <td>Delete</td>

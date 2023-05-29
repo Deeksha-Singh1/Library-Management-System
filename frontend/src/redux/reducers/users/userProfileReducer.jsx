@@ -1,4 +1,4 @@
-import { USER_PROFILE_FAIL, USER_PROFILE_REQUEST, USER_PROFILE_SUCCESS } from "../../actions/actionTypes";
+const { USER_PROFILE_FAIL, USER_PROFILE_REQUEST, USER_PROFILE_SUCCESS } = require( "../../actions/actionTypes");
 
 const userProfileReducer = (state={}, action)=>{
   switch(action.type){

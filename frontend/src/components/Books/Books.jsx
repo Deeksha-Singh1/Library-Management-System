@@ -15,8 +15,7 @@ const Books = () => {
     return state.bookList;
   });
   
-  console.log(books);
-  console.log(loading);
+
 
   return (
     <div>
@@ -24,7 +23,7 @@ const Books = () => {
         <div className='col'>
           <table className='table table-hover'>
             <thead>
-              <tr>
+              <tr key={books?._id}>
                 <th scope='col'>Author</th>
                 <th scope='col'>Book Name</th>
                 <th scope='col'>Action</th>
@@ -32,16 +31,14 @@ const Books = () => {
               </tr>
             </thead>
             <tbody>
-              {loading ? (
-                 <h3>Loading</h3>
-              ) : (
+             
                 <>
                   {books &&
                     books.map(book => {
                       return (
                         <>
                           {/* Map through here */}
-                          <tr className='table-dark'>
+                          <tr className='table-dark'  key={books?._id}>
                             <th scope='row'>{book.title}</th>
                             <td>{book.author}</td>
                             <td>
@@ -66,7 +63,7 @@ const Books = () => {
                       );
                     })}
                 </>
-              )}
+              
             </tbody>
           </table>
         </div>

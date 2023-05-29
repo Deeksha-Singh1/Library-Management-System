@@ -26,7 +26,7 @@ UserSchema.virtual('books', {
   localField: '_id'
 });
 
-UserSchema.set('toJSON', {virtuals:true})
+UserSchema.set('toJSON', {virtuals:true});
 
 //encrypting the password of the current user
 UserSchema.pre('save', async function (next) {
